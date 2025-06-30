@@ -1,15 +1,22 @@
+import {Entity, Column, PrimaryGeneratedColumn} from "typeorm";
+
+@Entity('patient')
 class Patient {
-    id: number;
-    code: string;
-    name: string;
+  @Column()
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    private static counter = 1;
+  @Column()
+  code: string;
 
-    constructor(code: string, name: string) {
-        this.id = Patient.counter++;
-        this.code = code;
-        this.name = name;
-    }
+  @Column()
+  name: string;
+
+
+  constructor(code: string, name: string) {
+    this.code = code;
+    this.name = name;
+  }
 }
 
 export default Patient;

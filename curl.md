@@ -8,6 +8,14 @@ curl -X GET http://localhost:3000/patients
 
 ---
 
+### 🔹 **1️⃣ Buscar paciente por id (GET)**
+
+```bash
+curl -X GET http://localhost:3000/patients/1
+```
+
+---
+
 ### 🔸 **2️⃣ Cadastrar um paciente (POST)**
 
 ```bash
@@ -35,7 +43,7 @@ curl -X POST http://localhost:3000/patients \
 Supondo que o ID do paciente seja `2`:
 
 ```bash
-curl -X PUT http://localhost:3000/patients/2 \
+curl -X PUT http://localhost:3000/patients/1 \
 -H "Content-Type: application/json" \
 -d '{
   "code": "002",
