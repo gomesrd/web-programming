@@ -7,7 +7,8 @@
     "dev": "npx nodemon src/app.ts --watch 'src/' -e ts",
     "start": "npx ts-node src/app.ts",
     "build": "npx tsc --project tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "swagger": "ts-node src/swagger.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,12 +17,16 @@
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "swagger-autogen": "^2.23.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.6",
+    "@types/swagger-ui-express": "^4.1.8",
     "install": "^0.13.0",
     "mysql2": "^3.14.1",
     "npm": "^11.4.2",

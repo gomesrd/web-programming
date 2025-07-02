@@ -1,29 +1,41 @@
 import express, {Request, Response, NextFunction} from "express"
 import dotenv from "dotenv"
-import patientRouter from "./routers/patientRouter"
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './docs/swagger.json';
 import {AppDataSource} from "./data-source";
+import routers from "./routers";
 
 dotenv.config()
 
-AppDataSource.initialize().then(async r => {
-  console.log("Database connected successfully!")
+AppDataSource.initialize()
+  .then(async r => {
+    console.log("Database connected successfully!")
+  })
+  .catch((err) => {
+    console.error('❌ Error connecting to the database:', err);
+    process.exit(1);
+  });
 
-  // await AppDataSource.runMigrations();
-
-}).catch(e => console.error(e));
-
-const app = express()
-
+const app = express();
 app.use(express.json());
+app.use(express.static('public'));
 
-app.use("/patients", patientRouter);
+app.use("/api/v1", routers);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-  res.send("Welcome to the Patient Management API");
+
+app.get('/health', (req: Request, res: Response) => {
+  res.status(200).json({
+    status: 'healthy',
+    message: '🩺 FateCare API is running smoothly!',
+    timestamp: new Date().toISOString()
+  });
 });
 
 const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => {
-  console.log(`Server is running at port ${PORT}`);
+  console.log(`🚀 Server is running at http://localhost:${PORT}`);
+  console.log(`✨ API is ready to use!`);
+  console.log(`📚 API Documentation: http://localhost:${PORT}/docs`);
 });

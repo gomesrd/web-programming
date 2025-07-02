@@ -24,26 +24,29 @@ async function addPatient(request: Patient): Promise<Patient> {
 }
 
 
-async function updatePatient(id: number, request: Patient): Promise<Patient | null> {
+async function updatePatient(id: number, data: Patient): Promise<Patient | null> {
   const patient = await getPatientById(id);
 
   if (!patient) {
     return null;
   }
 
-  await repository.update({
-    id: id
-  }, {
-    code: request.code,
-    name: request.name
-  })
+  patient.name = data.name;
+  patient.code = data.code;
 
-  return await getPatientById(id);
+  return await repository.save(patient);
+}
+
+async function deletePatient(id: number): Promise<boolean> {
+  const result = await repository.delete({"id": id});
+
+  return result.affected != null;
 }
 
 export default {
   getPatients,
   getPatientById,
   addPatient,
-  updatePatient
+  updatePatient,
+  deletePatient
 }

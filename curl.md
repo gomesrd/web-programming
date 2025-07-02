@@ -3,7 +3,7 @@
 ### 🔹 **1️⃣ Listar pacientes (GET)**
 
 ```bash
-curl -X GET http://localhost:3000/patients
+curl -X GET http://localhost:3000/api/v1/patients
 ```
 
 ---
@@ -11,7 +11,7 @@ curl -X GET http://localhost:3000/patients
 ### 🔹 **1️⃣ Buscar paciente por id (GET)**
 
 ```bash
-curl -X GET http://localhost:3000/patients/1
+curl -X GET http://localhost:3000/api/v1/patients/1
 ```
 
 ---
@@ -19,7 +19,7 @@ curl -X GET http://localhost:3000/patients/1
 ### 🔸 **2️⃣ Cadastrar um paciente (POST)**
 
 ```bash
-curl -X POST http://localhost:3000/patients \
+curl -X POST http://localhost:3000/api/v1/patients \
 -H "Content-Type: application/json" \
 -d '{
   "code": "001",
@@ -28,7 +28,7 @@ curl -X POST http://localhost:3000/patients \
 ```
 
 ```bash
-curl -X POST http://localhost:3000/patients \
+curl -X POST http://localhost:3000/api/v1/patients \
 -H "Content-Type: application/json" \
 -d '{
 "code": "001",
@@ -43,7 +43,7 @@ curl -X POST http://localhost:3000/patients \
 Supondo que o ID do paciente seja `2`:
 
 ```bash
-curl -X PUT http://localhost:3000/patients/1 \
+curl -X PATCH http://localhost:3000/api/v1/patients/2 \
 -H "Content-Type: application/json" \
 -d '{
   "code": "002",
